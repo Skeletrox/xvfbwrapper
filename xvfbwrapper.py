@@ -90,7 +90,8 @@ class Xvfb(object):
     def stop(self):
         try:
             if self.orig_display is None:
-                del os.environ['DISPLAY']
+                if os.environ.get('DISPLAY', None) is not None:
+                    del os.environ['DISPLAY']
             else:
                 self._set_display_var(self.orig_display)
             if self.proc is not None:
@@ -165,4 +166,3 @@ class Xvfb(object):
 
     def _set_display_var(self, display):
         os.environ['DISPLAY'] = ':{}'.format(display)
-        

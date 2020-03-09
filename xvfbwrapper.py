@@ -151,8 +151,7 @@ class Xvfb(object):
 
     def _get_next_unused_display(self):
         '''
-        Randomly chooses a display number and tries to acquire a lock for this number.
-        If the lock could be acquired, returns this number, otherwise choses a new one.
+        Incrementally increases available displays
         :return: free display number
         '''
         while True:

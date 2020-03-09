@@ -155,11 +155,14 @@ class Xvfb(object):
         :return: free display number
         '''
         while True:
-            rand = randint(1, self.__class__.MAX_DISPLAY)
+            # rand = randint(1, self.__class__.MAX_DISPLAY)
+            rand = 0
             if self._get_lock_for_display(rand):
                 return rand
             else:
+                rand += 1
                 continue
 
     def _set_display_var(self, display):
         os.environ['DISPLAY'] = ':{}'.format(display)
+        
